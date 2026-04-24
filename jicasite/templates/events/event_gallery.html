@@ -1,0 +1,17 @@
+{% load static %}
+<div class="event-gallery">
+  {% for event in events %}
+    <div class="event-block">
+      <h2>{{ event.title }}</h2>
+      <p>{{ event.description }}</p>
+      <div class="event-images">
+        {% for image in event.images.all %}
+          <div class="event-image">
+            <img src="{{ image.image.url }}" alt="{{ image.caption }}">
+            {% if image.caption %}<p>{{ image.caption }}</p>{% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>

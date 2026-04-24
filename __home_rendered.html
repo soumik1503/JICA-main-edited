@@ -1,0 +1,1438 @@
+﻿    
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Tripura JICA Project: Home</title>
+    <!-- Set default theme immediately to prevent FOUC -->
+    <script>
+        (function () {
+            var theme = localStorage.getItem('colour-scheme');
+            if (!theme) {
+                theme = 'blue';
+                localStorage.setItem('colour-scheme', theme);
+            }
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <!-- Required for YouTube iframe authorization on localhost -->
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+        integrity="sha384-gAPqlBuTCdtVcYt9ocMOYWrnBZ4XSL6q+4eXqwNycOr4iFczhNKtnYhF3NEXJM51" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/static/css/tailwind.css" />
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet"
+        integrity="sha384-10DoVN9MSqT44GmgiaFAkwxLVlZYPyf5Rm3ES/g+kaIo9cjawEBSMh/yo4L5UHsN" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"
+        integrity="sha384-sDs+8++trWbG/uXXC/F5Np3aMvmI/TYHN2wGN/xLWVsmhso7QSuJsa0Bym8izV32"
+        crossorigin="anonymous"></script>
+
+    <!-- FullCalendar JS (v6 injects its own styles) -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"
+        integrity="sha384-n4VL2mHw6ER8HxL4KH/pGa4ZTDkXrXtr5VHKdtXrgvrbP5MrydzsAFLP5kV9h9VY"
+        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+
+
+    <style nonce="">
+        #calendar {
+            max-width: 900px;
+            margin: 50px auto;
+        }
+    </style>
+
+
+    <link rel="stylesheet" href="/static/styles.css" />
+
+    
+
+</head>
+
+<body class="font-sans text-stone-600">
+    
+
+    <!-- Desktop jumbotron -->
+    <div class="header-gradient bg-white hidden lg:block">
+        <div class="p-2 top-header-bg flex text-white justify-between items-center">
+            <a href="#mainbody" class="text-sm text-white">
+                Skip to Main Content <svg fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6 inline">
+                    <path d="M12 15.5l-6-6 1.41-1.41L12 12.67l4.59-4.58L18 9.5z" />
+                    <path d="M5 18h14v2H5z" />
+                </svg>
+            </a>
+            <div class="flex space-x-2">
+                <span class="text-sm py-1">Colour Themes</span>
+                <button onclick="setColourScheme('light')"
+                    class="w-8 h-8 rounded-full border-2 border border-white text-sm transition bg-gray-100"></button>
+                <button onclick="setColourScheme('green')"
+                    class="w-8 h-8 rounded-full border-2 border border-white text-sm transition bg-green-600"></button>
+                <button onclick="setColourScheme('blue')"
+                    class="w-8 h-8 rounded-full border-2 border border-white text-sm transition bg-blue-500"></button>
+                <div class="ml-8 space-x-1">
+                    <span class="text-sm">Text size</span>
+                    <button id="decreaseText"
+                        class="w-8 h-8 rounded-full border-2 border-white text-sm hover:bg-gray-200 hover:text-black transition">A‑</button>
+                    <button id="resetText"
+                        class="w-8 h-8 rounded-full border-2 border border-white text-sm hover:bg-gray-200 transition">A</button>
+                    <button id="increaseText"
+                        class="w-8 h-8 rounded-full border-2 border border-white text-sm hover:bg-gray-200 transition">A+</button>
+                </div>
+            </div>
+        </div>
+        <div class="relative flex items-center gap-2 py-0">
+            <div class="w-[13%] text-left">
+                <img src="/static/images/tripura-govt-logo-transparent.png"
+                    class="ml-8 w-40 sm:w-30 md:w-50 lg:w-40 xl:w-40 h-auto" />
+            </div>
+            <div class="w-[57%] text-center">
+                <div class="flex items-center justify-center">
+                    <img src="/static/images/tripura_jica-project.png" class="h-auto" />
+                </div>
+            </div>
+            <!-- Right: Logos -->
+
+            <div class="flex w-[30%]">
+                <div>
+                    <img src="/static/images/scatform_transparent.png" />
+                </div>
+
+                <div class="h-10 py-3 justify-center items-center ml-16">
+                    <p class="font-sans text-center text-xs font-bold text-stone-800 uppercase">
+                        Visitors: 68791
+                    </p>
+
+                    <div id="currentTime"
+                        class="mt-10 font-sans text-center text-xs font-bold text-stone-800 uppercase"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Jumbotron -->
+    <div class="bg-white block lg:hidden lg:px-4 py-3">
+        <div class="bg-white block lg:hidden lg:px-2 py-3">
+            <div class="flex items-center text-center">
+                <img src="/static/images/tripura-govt-logo.jpg" class="w-20 h-20" />
+                <img src="/static/images/tripura_jica-project-small.png" class="object-scale-down" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <!-- Desktop Navigation -->
+        <div class="w-full flex justify-center menu-bg">
+            <nav class="hidden lg:flex flex flex-wrap justify-center gap-x-2 gap-y-2 p-2 text-white z-50">
+                <!-- Level 1 -->
+                <a href="/" class="px-2 py-2 font-sans text-sm font-medium flex items-center gap-2">
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                        </path>
+                    </svg>
+                    Home
+                </a>
+
+                <!-- Level 1: About Us -->
+                <div class="group relative">
+                    <button
+                        class="hover:text-stone-300 px-2 py-2 font-sans text-sm font-medium flex items-center gap-2">
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                            </path>
+                        </svg>
+                        About Us
+                    </button>
+                    <div
+                        class="absolute top-full left-0 mt-1 w-60 bg-white text-stone-700 shadow-md rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="/introduction" class="block px-4 py-2 hover:bg-stone-100">Introduction</a>
+                        <a href="/vision-mission" class="block px-4 py-2 hover:bg-stone-100">Vision & Mission</a>
+                        <a href="/who-who" class="block px-4 py-2 hover:bg-stone-100">Who is Who</a>
+                        <div class="relative group/team">
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-100">Committee</a>
+                            <div
+                                class="absolute top-0 left-full mt-0 w-80 bg-white text-stone-700 shadow-md rounded-md opacity-0 invisible group-hover/team:opacity-100 group-hover/team:visible transition-all duration-200 z-50">
+                                <a href="/high-power-steering" class="block px-4 py-2 hover:bg-stone-100">High Power
+                                    Sterring
+                                    Committee (HPSC)</a>
+                                <a href="/governing-body-gb" class="block px-4 py-2 hover:bg-stone-100">Governing Body
+                                    (GB)</a>
+                                <a href="/executive-committeeec" class="block px-4 py-2 hover:bg-stone-100">Executive
+                                    Committee
+                                    (EC)</a>
+                                <a href="/procurement-committeepc"
+                                    class="block px-4 py-2 hover:bg-stone-100">Procurement Committee
+                                    (PC)</a>
+                                <a href="/grievances-redressal-committee"
+                                    class="block px-4 py-2 hover:bg-stone-100">Grievances Redressal
+                                    Committee</a>
+                                <a href="/sexual-harassment-committee" class="block px-4 py-2 hover:bg-stone-100">Sexual
+                                    Harassment
+                                    Committee</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level 1: Management -->
+                <div class="group relative">
+                    <button
+                        class="hover:text-stone-300 px-2 py-2 font-sans text-sm font-medium flex items-center gap-2">
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
+                            </path>
+                        </svg>
+                        Management</button>
+                    <div
+                        class="absolute top-full left-0 mt-1 w-80 bg-white text-stone-700 shadow-md rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="/project-management-unit-pmu" class="block px-4 py-2 hover:bg-stone-100">Project
+                            Management Unit (PMU)</a>
+                        <a href="/district-management-unit-dmu" class="block px-4 py-2 hover:bg-stone-100">District
+                            Management Unit (DMU)</a>
+                        <a href="/sub-divisional-management-unit-sdmu"
+                            class="block px-4 py-2 hover:bg-stone-100">Sub-Divisional Management Unit (SDMU)</a>
+                        <a href="/range-management-unit-rmu" class="block px-4 py-2 hover:bg-stone-100">Range Management
+                            Unit (RMU)</a>
+                    </div>
+                </div>
+
+                <!-- Level 1: Component -->
+                <div class="group relative">
+                    <button
+                        class="hover:text-stone-300 px-2 py-2 font-sans text-sm font-medium flex items-center gap-2">
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                            </path>
+                        </svg>
+                        Component
+                    </button>
+                    <div
+                        class="absolute top-full left-0 mt-1 w-80 bg-white text-stone-700 shadow-md rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+
+                        <div class="relative group/team">
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-100">Sustainable Forest Management</a>
+                            <div
+                                class="absolute top-0 left-full mt-0 w-60 bg-white text-stone-700 shadow-md rounded-md opacity-0 invisible group-hover/team:opacity-100 group-hover/team:visible transition-all duration-200 z-50">
+                                <a href="/plantation" class="block px-4 py-2 hover:bg-stone-100">Plantation</a>
+                                <a href="/nursery" class="block px-4 py-2 hover:bg-stone-100">Nursery</a>
+                            </div>
+                        </div>
+                        <div class="relative group/team">
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-100">Soil
+                                and Moisture Conservation</a>
+                            <div
+                                class="absolute top-0 left-full mt-0 w-60 bg-white text-stone-700 shadow-md rounded-md opacity-0 invisible group-hover/team:opacity-100 group-hover/team:visible transition-all duration-200 z-50">
+                                <a href="/smc-structures" class="block px-4 py-2 hover:bg-stone-100">SMC Structures</a>
+                                <a href="/water-quality-monitoring" class="block px-4 py-2 hover:bg-stone-100">Water
+                                    Quality
+                                    Monitoring</a>
+                            </div>
+                        </div>
+
+                        <div class="relative group/team">
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-100">Institutional Strengthening</a>
+                            <div
+                                class="absolute top-0 left-full mt-0 w-60 bg-white text-stone-700 shadow-md rounded-md opacity-0 invisible group-hover/team:opacity-100 group-hover/team:visible transition-all duration-200 z-50">
+                                <a href="/forestry-integrated-geospatial-solution-figs"
+                                    class="block px-4 py-2 hover:bg-stone-100">Forestry Integrated
+                                    Geospatial Solution (FIGS)</a>
+                                <a href="/scat-ams" class="block px-4 py-2 hover:bg-stone-100">SCAT-AMS</a>
+                                <a href="/capacity-building-activities"
+                                    class="block px-4 py-2 hover:bg-stone-100">Capacity Building
+                                    Activities</a>
+                                <a href="/construction" class="block px-4 py-2 hover:bg-stone-100">Construction</a>
+                            </div>
+                        </div>
+
+                        <div class="relative group/team">
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-100">Livelihood
+                                Development</a>
+                            <div
+                                class="absolute top-0 left-full mt-0 w-60 bg-white text-stone-700 shadow-md rounded-md opacity-0 invisible group-hover/team:opacity-100 group-hover/team:visible transition-all duration-200 z-50">
+                                <a href="/fishery" class="block px-4 py-2 hover:bg-stone-100">Fishery</a>
+                                <a href="/livestock" class="block px-4 py-2 hover:bg-stone-100">Livestock</a>
+                                <a href="/ntfp-non-ntfp-based-product" class="block px-4 py-2 hover:bg-stone-100">NTFP &
+                                    Non- NTFP Based
+                                    Product</a>
+                                <a href="/agroforestry" class="block px-4 py-2 hover:bg-stone-100">Agroforestry</a>
+
+                            </div>
+                        </div>
+                        <div class="relative group/team">
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-100">
+                                Ecotourism
+                            </a>
+                            <div
+                                class="absolute top-0 left-full mt-0 w-60 bg-white text-stone-700 shadow-md rounded-md opacity-0 invisible group-hover/team:opacity-100 group-hover/team:visible transition-all duration-200 z-50">
+                                <a href="/ecotourism-development" class="block px-4 py-2 hover:bg-stone-100">Ecotourism
+                                    Development</a>
+                                <a href="/biodiversity-conservation"
+                                    class="block px-4 py-2 hover:bg-stone-100">Biodiversity Conservation</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level 1: MIS/GIS -->
+                <div class="group relative">
+                    <button
+                        class="hover:text-stone-300 px-2 py-2 font-sans text-sm font-medium flex items-center gap-2">
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7">
+                            </path>
+                        </svg>
+                        MIS/GIS/FIGS</button>
+                    <div
+                        class="absolute top-full left-0 mt-1 w-60 bg-white text-stone-700 shadow-md rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+
+                        <div class="relative group/team">
+                            <a href="#" class="block px-4 py-2 hover:bg-stone-100">MIS</a>
+                            <div
+                                class="absolute top-0 left-full mt-0 w-60 bg-white text-stone-700 shadow-md rounded-md opacity-0 invisible group-hover/team:opacity-100 group-hover/team:visible transition-all duration-200 z-50">
+                                <a href="/cost-breakdown" class="block px-4 py-2 hover:bg-stone-100">Cost Breakdown</a>
+                                <a href="/project-duration" class="block px-4 py-2 hover:bg-stone-100">Project
+                                    Duration</a>
+                                <a href="/jfmcs-edcs" class="block px-4 py-2 hover:bg-stone-100">JFMC(s) / EDC(s)</a>
+                                <a href="/shgs-jlgs" class="block px-4 py-2 hover:bg-stone-100">SHG(s) / JLG(s)</a>
+                            </div>
+                        </div>
+                        <a href="/gis" class="block px-4 py-2 hover:bg-stone-100">GIS</a>
+                        <a href="/figs/" class="block px-4 py-2 hover:bg-stone-100">FIGS</a>
+                    </div>
+                </div>
+
+                <!-- Level 1: Media -->
+                <div class="group relative">
+                    <button
+                        class="hover:text-stone-300 px-2 py-2 font-sans text-sm font-medium flex items-center gap-2">
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                        Media</button>
+                    <div
+                        class="absolute top-full left-0 mt-1 w-60 bg-white text-stone-700 shadow-md rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="/social-media" class="block px-4 py-2 hover:bg-stone-100">Social Media</a>
+                        <a href="/publications" class="block px-4 py-2 hover:bg-stone-100">Publications</a>
+                        <a href="/downloads" class="block px-4 py-2 hover:bg-stone-100">Downloads</a>
+                        <a href="/reports" class="block px-4 py-2 hover:bg-stone-100">Reports</a>
+                        <a href="/events" class="block px-4 py-2 hover:bg-stone-100">Gallery</a>
+                        <a href="/spotlight" class="block px-4 py-2 hover:bg-stone-100">Spotlight</a>
+                    </div>
+                </div>
+
+                <!-- Level 1: Notification -->
+                <div class="group relative">
+                    <button
+                        class="hover:text-stone-300 px-2 py-2 font-sans text-sm font-medium flex items-center gap-2">
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 30">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 17h5l-5 5v-5zM4.868 19.462A17.013 17.013 0 003 12C3 5.373 8.373 0 15 0s12 5.373 12 12-5.373 12-12 12a11.956 11.956 0 01-7.132-2.538L2 22l1.868-2.538z">
+                            </path>
+                        </svg>
+                        Notification
+                    </button>
+                    <div
+                        class="absolute top-full left-0 mt-1 w-60 bg-white text-stone-700 shadow-md rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="/office-ordercircular" class="block px-4 py-2 hover:bg-stone-100">Office
+                            Order/Circular</a>
+                        <a href="/tenders" class="block px-4 py-2 hover:bg-stone-100">Tenders</a>
+                    </div>
+                </div>
+
+
+                <!--Contact Us-->
+                <a href="/contact-us"
+                    class="hover:text-stone-300 px-2 py-2 font-sans text-sm font-medium flex items-center gap-2">
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                        </path>
+                    </svg>
+                    Contact Us</a>
+                <a href="/rti"
+                    class="hover:text-stone-300 px-2 py-2 font-sans text-sm font-medium flex items-center gap-2">
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 16h8M8 12h4m5-8H7a2 2 0 00-2 2v14l4-4h9a2 2 0 002-2V6a2 2 0 00-2-2z" />
+                    </svg>
+                    Citizen Charter</a>
+                <!--Holidays-->
+                <a href="#" id="calendarBtn"
+                    class="hover:text-stone-300 px-2 py-2 font-sans text-sm font-medium flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-calendar-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5h16V4H0V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5" />
+                    </svg>
+                </a>
+
+                <!--Twitter-->
+                <a href="https://x.com/JicaTripura" target="_blank"
+                    class="hover:text-stone-300 px-2 py-2 font-sans text-sm font-medium flex items-center gap-2">
+                    <svg class="h-5 w-5 text-white hover:text-stone-300 cursor-pointer transition-colors"
+                        fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" />
+                    </svg>
+                </a>
+                <!--facebook-->
+                <a href="https://www.facebook.com/JicaTripura" target="_blank"
+                    class="hover:text-stone-300 px-2 py-2 font-sans text-sm font-medium flex items-center gap-2">
+                    <svg class="h-5 w-5 text-white hover:text-stone-300 cursor-pointer transition-colors"
+                        fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.509 1.492-3.874 3.767-3.874 1.093 0 2.242.197 2.242.197v2.438h-1.247c-1.247 0-1.613.772-1.613 1.566V12h2.797l-.441 2.203h-2.356v6.987C18.343 21.128 22 16.991 22 12z" />
+                    </svg>
+
+                </a>
+                <!--Youtube-->
+                <a href="https://www.youtube.com/@scatformproject3954" target="_blank"
+                    class="hover:text-stone-300 px-2 py-2 font-sans text-sm font-medium flex items-center gap-2">
+                    <svg viewBox="0 0 24 24"
+                        class="h-5 w-5 text-white hover:text-stone-300 cursor-pointer transition-colors" fill="#ffffff">
+                        <path
+                            d="M10 14.6v-5.2l4.7 2.6-4.7 2.6zm11.31-7.81c-.24-.92-.85-1.73-1.77-2.15-.9-.43-1.98-.67-3.1-.67h-12.62c-1.12 0-2.2.24-3.1.67-.92.42-1.53 1.23-1.77 2.15-.24.92-.36 1.86-.36 2.81v6.76c0 .95.12 1.89.36 2.81.24.92.85 1.73 1.77 2.15.9.43 1.98.67 3.1.67h12.62c1.12 0 2.2-.24 3.1-.67.92-.42 1.53-1.23 1.77-2.15.24-.92.36-1.86.36-2.81v-6.76c0-.95-.12-1.89-.36-2.81z" />
+                    </svg>
+                </a>
+            </nav>
+        </div>
+        <div class="lg:hidden">
+            <div class="flex justify-between items-center">
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-100 hidden">
+            <div class="px-4 py-2 space-y-1">
+                <a href="#" class="block font-medium text-base py-2">Home</a>
+
+                <!-- Level 1: About Us -->
+                <details class="group">
+                    <summary class="cursor-pointer font-medium text-base py-2">About Us</summary>
+                    <div class="pl-4 mt-2 space-y-2">
+                        <a href="/introduction" class="block py-1">Introduction</a>
+                        <a href="/vision-mission" class="block py-1">Vision & Mission</a>
+                        <a href="/who-who" class="block py-1">Who is Who</a>
+                        <details class="group">
+                            <summary class="cursor-pointer py-1">Committee</summary>
+                            <div class="pl-4 mt-1 space-y-1">
+                                <a href="/high-power-sterring" class="block text-sm">High Power Sterring Committee
+                                    (HPSC)</a>
+                                <a href="/governing-body-gb" class="block text-sm">Governing Body (GB)</a>
+                                <a href="/executive-committeeec" class="block text-sm">Executive Committee (EC)</a>
+                                <a href="/procurement-committeepc" class="block text-sm">Procurement Committee (PC)</a>
+                                <a href="/grievances-redressal-committee" class="block text-sm">Grievances Redressal
+                                    Committee</a>
+                                <a href="/sexual-harassment-committee" class="block text-sm">Sexual Harassment
+                                    Committee</a>
+                            </div>
+                        </details>
+                    </div>
+                </details>
+                <!-- Level 1: Management -->
+                <details class="group">
+                    <summary class="cursor-pointer font-medium text-base py-2">Management</summary>
+                    <div class="pl-4 mt-2 space-y-2">
+                        <a href="/project-management-unit-pmu" class="block py-1">Project Management Unit (PMU)</a>
+                        <a href="/district-management-unit-dmu" class="block py-1">District Management Unit (DMU)</a>
+                        <a href="/sub-divisional-management-unit-sdmu" class="block py-1">Sub-Divisional Management Unit
+                            (SDMU)</a>
+                        <a href="/range-management-unit-rmu" class="block py-1">Range Management Unit (RMU)</a>
+                    </div>
+                </details>
+
+                <!-- Level 1: Component -->
+                <details class="group">
+                    <summary class="cursor-pointer font-medium text-base py-2">Component</summary>
+                    <div class="pl-4 mt-2 space-y-2">
+                        <details class="group">
+                            <summary class="cursor-pointer py-1">
+                                Sustainable Forest Management
+                            </summary>
+                            <div class="pl-4 mt-1 space-y-1">
+                                <a href="/plantation" class="block">Plantation</a>
+                                <a href="/nursery" class="block">Nursery</a>
+                            </div>
+                        </details>
+                        <details class="group">
+                            <summary class="cursor-pointer py-1">Soil and Moisture Conservation</summary>
+                            <div class="pl-4 mt-1 space-y-1">
+                                <a href="/smc-structures" class="block">SMC Structures</a>
+                                <a href="/water-quality-monitoring" class="block">Water Quality Monitoring</a>
+                            </div>
+                        </details>
+                        <details class="group">
+                            <summary class="cursor-pointer py-1">Institutional Strengthening</summary>
+                            <div class="pl-4 mt-1 space-y-1">
+                                <a href="/forestry-integrated-geospatial-solution-figs" class="block">Forestry
+                                    Integrated Geospatial Solution (FIGS)</a>
+                                <a href="/scat-ams" class="block">SCAT-AMS</a>
+                                <a href="/capacity-building-activities" class="block">Capacity Building Activities</a>
+                                <a href="/construction" class="block">Construction</a>
+                            </div>
+                        </details>
+                        <details class="group">
+                            <summary class="cursor-pointer py-1">Livelihood Development</summary>
+                            <div class="pl-4 mt-1 space-y-1">
+                                <a href="/fishery" class="block">Fishery</a>
+                                <a href="/livestock" class="block">Livestock</a>
+                                <a href="/ntfp-non-ntfp-based-product" class="block">NTFP & Non- NTFP Based Product</a>
+                                <a href="/agroforestry" class="block">Agroforestry</a>
+                            </div>
+                        </details>
+                        <details class="group">
+                            <summary class="cursor-pointer py-1">Ecotourism</summary>
+                            <div class="pl-4 mt-1 space-y-1">
+                                <a href="/ecotourism-development" class="block">Ecotourism Development</a>
+                                <a href="/biodiversity-conservation" class="block">Biodiversity Conservation</a>
+                            </div>
+                        </details>
+                    </div>
+                </details>
+
+                <!-- Level 1: MIS/GIS -->
+                <details class="group">
+                    <summary class="cursor-pointer font-medium text-base py-2">MIS/GIS/FIGS</summary>
+                    <div class="pl-4 mt-2 space-y-2">
+                        <details class="group">
+                            <summary class="cursor-pointer py-1">MIS</summary>
+                            <div class="pl-4 mt-1 space-y-1">
+                                <a href="/cost-breakdown" class="block text-sm">Cost Breakdown</a>
+                                <a href="/project-duration" class="block text-sm">Project Duration</a>
+                                <a href="/jfmcs-edcs" class="block text-sm">JFMC(s) / EDC(s)</a>
+                                <a href="/shgs-jlgs" class="block text-sm">SHG(s) / JLG(s)</a>
+                            </div>
+                        </details>
+                        <a href="/gis" class="block text-sm">GIS</a>
+                        <a href="/figs/" class="block text-sm">FIGS😀</a>
+                    </div>
+                </details>
+
+                <!-- Level 1: Media -->
+                <details class="group">
+                    <summary class="cursor-pointer font-medium text-base py-2">Media</summary>
+                    <div class="pl-4 mt-2 space-y-2">
+                        <a href="/social-media" class="block text-sm">Social Media</a>
+                        <a href="/publications" class="block text-sm">Publications</a>
+                        <a href="/downloads" class="block text-sm">Downloads</a>
+                        <a href="/reports" class="block text-sm">Reports</a>
+                        <a href="/gallery" class="block text-sm">Gallery</a>
+                        <a href="/spotlight" class="block text-sm">Spotlight</a>
+                    </div>
+                </details>
+
+                <!-- Level 1: Notification -->
+                <details class="group">
+                    <summary class="cursor-pointer font-medium text-base py-2">Notification</summary>
+                    <div class="pl-4 mt-2 space-y-2">
+                        <a href="/office-ordercircular" class="block text-sm">Office Order/Circular</a>
+                        <a href="/tenders" class="block text-sm">Tenders</a>
+                    </div>
+                </details>
+
+                <a href="/contact-us" class="block font-medium text-base py-2">Contact Us</a>
+                <a href="/rti" class="block font-medium text-base py-2">Citizen Charter</a>
+            </div>
+        </div>
+    </header>
+    
+ <div class="carousel-wrapper">
+<div class="slides-container">
+<div class="slide-container"><img src="/media/uploads/ca948bdd-8780-4f4c-b242-bb34008b36c9_3.jpg" width="1600" height="550" alt=""></div>
+<div class="slide-container"><img src="/media/uploads/7c9f5225-43bb-4879-9d7e-ddc4ee9efc49_4.jpg" alt=""></div>
+<div class="slide-container"><img src="/media/uploads/9de9310d-12b5-4f68-bd33-568b43c87871_2.jpg" alt=""></div>
+<div class="slide-container"><img src="/media/uploads/1f037817-c1ab-4d6b-8434-bdc4e6daffca_1.jpg" alt=""></div>
+</div>
+<button class="carousel-nav-btn prev" id="prevBtn">&larr;</button> <button class="carousel-nav-btn next" id="nextBtn">&rarr;</button>
+<div class="carousel-dots" id="carouselDots"></div>
+</div>
+
+    <!-- Main Content -->
+
+    <!-- Calendar Modal -->
+    <div id="calendarModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-lg max-w-4xl w-full p-6 relative">
+            <!-- Close button -->
+            <button id="closeCalendar"
+                class="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-2xl">&times;</button>
+
+            <!-- Modal Title -->
+            <h2 class="text-xl font-semibold mb-4">Holiday Calendar</h2>
+
+            <!-- Calendar container -->
+            <div id="calendar" class="w-full h-[60vh] mx-auto"></div>
+        </div>
+    </div>
+    <div id="mainbody" class="relative bg-white p-4 min-h-[300px]">
+        <div class="absolute inset-12 bg-center bg-repeat-y bg-contain opacity-10 z-50 pointer-events-none"
+            style="background-image: url('/static/images/scatform_logo.png');"></div>
+        
+        
+	
+ <section id="welcome">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-4">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h1 class="text-2xl font-bold uppercase text-center">Welcome to Tripura JICA Project (SCATFORM)</h1>
+</div>
+<div class="flex flex-col items-center md:flex-row md:justify-between w-full">
+<div class="space-y-2 flex-1">
+<div class="grid items-center justify-center mx-auto mb-4">
+<div class="flex items-center justify-center mx-auto mb-4"><img src="/media/uploads/manik_saha.jpg" class="rounded-2xl h-[220px]"></div>
+<h3 class="font-semibold mb-2 text-center">Prof. (Dr.) Manik Saha</h3>
+<p class="text-center">Hon'ble Chief Minister</p>
+<p class="text-center">Tripura</p>
+</div>
+</div>
+<!-- Content -->
+<div class="space-y-2 max-w-xl w-full">
+<p class="text-justify items-center justify-center mb-8 ">Project for Sustainable Catchment Forest Management in Tripura (SCATFORM) is a new project funded under the Japanese ODA Loan to be implemented over a period of 10 years beginning from 2018-19 by the Tripura Forest Department with a total outlay of about Rs 1000 Crore. This is one of the largest projects in the natural resource sector in the country.</p>
+</div>
+<div class="space-y-2 flex-1">
+<div class="grid items-center justify-center mx-auto mb-4">
+<div class="flex items-center justify-center mx-auto mb-4"><img src="/media/uploads/srianimeshdebbarma-2.jpg" class="rounded-2xl h-[220px]"></div>
+<h3 class="font-semibold mb-2 text-center">Shri Animesh Debbarma</h3>
+<p class="text-center">Hon'ble Forest Minister,</p>
+<p class="text-center">Government of Tripura</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="tabs" class="pt-4">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-4 border-t">
+<div class="flex flex-col items-center md:flex-row md:justify-between w-full">
+<div class="space-y-2 flex-1">
+<div class="flex items-center justify-center mx-auto mb-4"><img src="/media/uploads/ShriRabindraKumarSamal-2.jpg" class="rounded-2xl h-[188px]"></div>
+<h3 class="font-semibold mb-2 text-center">Shri Rabindra Kumar Samal, IFS</h3>
+<p class="text-center">Principal Chief Conservator of</p>
+<p class="text-center">Forest (PCCF) &amp; Head of Forest</p>
+<p class="text-center">Force (HoFF), Tripura</p>
+</div>
+<div class="space-y-2 max-w-xl w-full">
+<div class="w-full min-h-[300px] bg-gray-100 p-4 rounded-lg">
+<div class="rounded-2xl items-center justify-center"><!-- Tab Navigation -->
+<div class="w-full"><!-- Tab List -->
+<ul class="flex flex-wrap text-sm font-medium text-center border-b border-gray-200" role="tablist">
+<li class="me-2"><button class="px-4 py-2 rounded-t-lg bg-blue-600 text-white" id="tab-1" data-tab="1"> WHAT'S NEW </button></li>
+<li class="me-2"><button class="px-4 py-2 rounded-t-lg bg-gray-600 text-white hover:bg-blue-400" id="tab-2" data-tab="2"> NOTIFICATION </button></li>
+<li class="me-2"><button class="px-4 py-2 rounded-t-lg bg-gray-600 text-white hover:bg-blue-400" id="tab-3" data-tab="3"> TENDERS </button></li>
+</ul>
+<!-- Tab Content -->
+<div class="mt-4 h-64 overflow-y-auto border border-gray-300 rounded-lg bg-white p-4">
+<div id="content-1" class="block">
+<div x-data="" x-init="$nextTick(()=&gt;{})" class="scroll-wrapper h-48">
+<div class="scroll-content">
+<div class="py-1 flex text-stone-600 border-b-2"><img src="/static/images/files.png" class="h-6"> <a href="#" class="ml-2">International Yoga Day Celebration 2025 at PMU on 21st June 2025</a></div>
+<div class="py-1 flex text-stone-600 border-b-2"><img src="/static/images/files.png" class="h-6"> <a href="#" class="ml-2">RFP for Mid-Term Evaluation</a></div>
+<div class="py-1 flex text-stone-600 border-b-2"><img src="/static/images/files.png" class="h-6"> <a href="#" class="ml-2">Tender Opening &amp; Evaluation Committee Agroforestry</a></div>
+<div class="py-1 flex text-stone-600 border-b-2"><img src="/static/images/files.png" class="h-6"> <a href="#" class="ml-2">Field visit for AGF</a></div>
+<div class="py-1 flex text-stone-600 border-b-2"><img src="/static/images/files.png" class="h-6"> <a href="#" class="ml-2">Agro forestry Quotation</a></div>
+<div class="py-1 flex text-stone-600 border-b-2"><img src="/static/images/files.png" class="h-6"> <a href="#" class="ml-2">Meeting Notice with bank</a></div>
+</div>
+</div>
+</div>
+<div id="content-2" class="hidden">
+<div x-data="" x-init="$nextTick(()=&gt;{})" class="scroll-wrapper">
+<div class="scroll-content">
+<div class="py-1 flex text-stone-600 border-b-2"><img src="/static/images/files.png" class="h-6"> <a href="#" class="ml-2">Confirmation of target for raising of Agroforestry-July 2025</a></div>
+<div class="py-1 flex text-stone-600 border-b-2"><img src="/static/images/files.png" class="h-6"> <a href="#" class="ml-2">International Yoga Day Celebration 2025 at PMU on 21st June 2025</a></div>
+<div class="py-1 flex text-stone-600 border-b-2"><img src="/static/images/files.png" class="h-6"> <a href="#" class="ml-2">Review Meeting North 02-08-2025</a></div>
+</div>
+</div>
+</div>
+<div id="content-3" class="hidden">
+<div x-data="" x-init="$nextTick(()=&gt;{})" class="scroll-wrapper">
+<div class="scroll-content">
+<div class="py-1 flex text-stone-600 border-b-2"><img src="/static/images/files.png" class="h-6"> <a href="#" class="ml-2">Agro forestry Quotation</a></div>
+<div class="py-1 flex text-stone-600 border-b-2"><img src="/static/images/files.png" class="h-6"> <a href="#" class="ml-2">RFP for Hiring Agency for supplying Manpower under Tripura JICA Project (SCATFORM)</a></div>
+<div class="py-1 flex text-stone-600 border-b-2"><img src="/static/images/files.png" class="h-6"> <a href="#" class="ml-2">RFP for Mid-Term Evaluation</a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-2 flex-1">
+<div class="flex items-center justify-center mx-auto mb-4"><img src="/media/uploads/bbdf8c7e-43c7-4979-8bb3-126301216f3a_Bhanumati_G.jpeg.jpg" class="rounded-2xl h-[188px]"></div>
+<h3 class="font-semibold mb-2 text-center">Bhanumati G, IFS</h3>
+<p class="text-center text-wrap">Chief Executive Officer &amp; Project Director, Tripura JICA Project (SCATFORM) <br><br><br></p>
+</div>
+</div>
+</div>
+</section>
+<section id="about">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-4 border-t">
+<h1 class="text-2xl font-bold uppercase text-center">About JICA (Donor Agency)</h1>
+</div>
+<div class="flex flex-col items-center md:flex-row md:justify-between w-full">
+<div class="space-y-2 flex-1">
+<div class="grid items-center justify-center mx-auto mb-4"><img src="/media/uploads/president.jpg" class="rounded-2xl w-[180px] h-[212px]">
+<p class="text-center">Dr. TANAKA Akihiko,</p>
+<p class="text-center">President, JICA</p>
+</div>
+</div>
+<!-- Content -->
+<div class="space-y-2 max-w-xl w-full">
+<p class="text-justify items-center justify-center mb-8 ">The Japan International Cooperation Agency (JICA) is a Governmental Agency that delivers the bulk of Official Development Assistance for the government of Japan. It is chartered with assisting economic and social growth in developing countries, and the promotion of international cooperation.</p>
+<p class="text-justify items-center justify-center mb-8 ">The Japan International Cooperation Agency (JICA) is advancing its activities around the pillars of a field-oriented approach, human security, and enhanced effectiveness, efficiency, and speed.</p>
+</div>
+<div class="space-y-2 flex-1">
+<div class="grid items-center justify-center mx-auto mb-4">
+<div class="flex items-center justify-center mx-auto mb-4"><img src="/media/uploads/cr_jica.jpg" class="rounded-2xl h-[220px]"></div>
+<p class="text-center">Mr. TAKEUCHI Takuro,</p>
+<p class="text-center">Chief Representative,</p>
+<p class="text-center">JICA India</p>
+</div>
+</div>
+</div>
+</section>
+<section id="objective" class="pt-4">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-4">
+<div class="grid md:grid-cols-3 lg:grid-cols-3 gap-12 pt-4 border-t mt-4">
+<div class="">
+<h4 class="text-xl font-bold">Project Objective</h4>
+<div class="text-base mt-1">
+<p class="text-justify">To improve quality of forest in the targeted catchment by sustainable forest management, soil and moisture conservation and livelihood development, thereby contributing to development of forest ecosystem services and livelihood improvement of forest dependent communities.</p>
+</div>
+</div>
+<div class="">
+<div class="text-xl font-bold">Vision</div>
+<div class="text-base mt-1">
+<p>Leading the world with trust.</p>
+<p class="text-justify">JICA, with its partners, will take the lead in forging bonds of trust across the world, aspiring for a free, peaceful and prosperous world where people can hope for a better future and explore their diverse potentials.</p>
+</div>
+</div>
+<div>
+<p class="text-xl font-bold">Mission</p>
+<p class="text-justify">JICA, in accordance with the Development Cooperation Charter, will work on human security and quality growth.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="about" class="pt-4">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-4">
+<div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 pt-4 border-t mt-4">
+<div class="">
+<div class="text-xl font-bold">Area of Implementation</div>
+<div class="text-base mt-1">
+<p class="text-justify">Harness the power of earth-conscious technology with our comprehensive suite of sustainable business solutions and environmental management systems.</p>
+<p class="text-justify">There will be 450 new Joint Forest Management Committee and 1350 SHGs ( 3 SHG in each JFMC, on an average ).</p>
+</div>
+</div>
+<div class="">
+<div class="text-xl font-bold">Actions</div>
+<div class="text-base mt-1">
+<p class="text-justify"><span class="font-bold">Commitment:</span> Commit ourselves with pride and passion to achieving our mission and vision.</p>
+<p class="text-justify"><span class="font-bold">Gemba:</span> Dive into the field ("gemba") and work together with the people.</p>
+<p class="text-justify"><span class="font-bold">Strategy:</span> Think and act strategically with broad and long-term perspectives.</p>
+<p class="text-justify"><span class="font-bold">Co-creation:</span> Bring together diverse wisdom and resources.</p>
+<p class="text-justify"><span class="font-bold">Innovation:</span> Innovate to bring about unprecedented impacts.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+        
+ <section id="gallery" class="py-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-8">
+<h2 class="text-3xl sm:text-2xl font-bold mb-4">Our Gallery</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6">
+<div class="aspect-square overflow-hidden rounded-2xl cursor-pointer"><img src="/media/uploads/1_thumb.jpg" alt="Gallery image 1" class="w-full h-full object-cover image-hover"></div>
+<div class="aspect-square overflow-hidden rounded-2xl cursor-pointer"><img src="/media/uploads/2_thumb.jpg" alt="Gallery image 2" class="w-full h-full object-cover image-hover"></div>
+<div class="aspect-square overflow-hidden rounded-2xl cursor-pointer"><img src="/media/uploads/3_thumb.jpg" alt="Gallery image 3" class="w-full h-full object-cover image-hover"></div>
+<div class="aspect-square overflow-hidden rounded-2xl cursor-pointer"><img src="/media/uploads/4_thumb.jpg" alt="Gallery image 4" class="w-full h-full object-cover image-hover"></div>
+<div class="aspect-square overflow-hidden rounded-2xl cursor-pointer"><img src="/media/uploads/5_thumb.jpg" alt="Gallery image 5" class="w-full h-full object-cover image-hover"></div>
+<div class="aspect-square overflow-hidden rounded-2xl cursor-pointer"><img src="/media/uploads/6_thumb.jpg" alt="Gallery image 6" class="w-full h-full object-cover image-hover"></div>
+</div>
+</div>
+</section>
+
+        
+ <section id="youtube" class="py-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+<div class="bg-stone-50 p-6 rounded-2xl items-center justify-center">
+<h2 class="text-xl sm:text-xl font-bold mb-4 text-center">Tripura JICA on YouTube</h2>
+<div class="flex flex-wrap lg:flex-col-3 md:flex-col-3 gap-6 items-center justify-center">
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+<div class="aspect-w-16 aspect-h-9"><iframe src="https://www.youtube.com/embed/hKsdL8hY8FU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen">
+                            </iframe></div>
+</div>
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+<div class="aspect-w-16 aspect-h-9"><iframe src="https://www.youtube.com/embed/Mue2k5t3-s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen">
+                            </iframe></div>
+</div>
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+<div class="aspect-w-16 aspect-h-9"><iframe src="https://www.youtube.com/embed/kWuQk09uPpw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen">
+                            </iframe></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+        
+ <section id="social" class="py-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+<div class="bg-stone-50 p-6 rounded-2xl items-center justify-center">
+<h2 class="text-xl sm:text-xl font-bold mb-4">Tripura JICA on Facebook</h2>
+<div class="rounded-lg overflow-hidden mb-4">
+<div id="fb-root"></div>
+<div class="fb-post" data-href="https://www.facebook.com/TripuraJICAProject/posts/pfbid025f7qs5C1ZfHTR8VW2KMSyLwANWTDa9nxSSELvvHqGHtcc6sDxg4rKf8MdVSmwa4tl"></div>
+</div>
+</div>
+</div>
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+<div class="bg-stone-50 p-6 rounded-2xl items-center justify-center">
+<h2 class="text-xl sm:text-xl font-bold mb-4">Tripura JICA on Twitter</h2>
+<div class="rounded-lg overflow-hidden mb-4">
+<blockquote class="twitter-tweet"><a href="https://twitter.com/JicaTripura/status/1890349126228832669"></a></blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+        
+ <section id="external-link" class="py-4">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center">
+<section class="bg-gray-300 py-10 px-4">
+<div class="max-w-7xl mx-auto"><!-- Swiper Container -->
+<div class="swiper mySwiper">
+<div class="swiper-wrapper">
+<div class="swiper-slide"><a href="https://moef.gov.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/1.png" class="rounded-2xl" alt="Slide 1"> </a></div>
+<div class="swiper-slide"><a href="https://tfdpc.tripura.gov.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/2.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://biodiversity.tripura.gov.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/3.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://ifs.nic.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/4.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://www.ignfa.gov.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/5.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="http://www.icfre.gov.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/6.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://eprocure.gov.in/eprocure/app" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/7.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://gem.gov.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/8.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://eauction.gov.in/eAuction/app" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/9.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://igod.gov.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/10.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://jica.tripura.gov.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/11.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://www.india.gov.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/12.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://edistrict.tripura.gov.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/13.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://wii.gov.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/14.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://fsi.nic.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/15.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://iifm.ac.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/16.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://tspcb.tripura.gov.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/17.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://www.mygov.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/18.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="http://bhuvan-noeda.nrsc.gov.in/projects/moef/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/19.png" class="rounded-2xl" alt="Slide 2"></a></div>
+<div class="swiper-slide"><a href="https://tripura.gov.in/" target="_blank" rel="noopener"> <img src="../static/images/external-link-images/20.png" class="rounded-2xl" alt="Slide 2"></a></div>
+</div>
+<!-- Navigation buttons -->
+<div class="swiper-button-next"></div>
+<div class="swiper-button-prev"></div>
+<div class="swiper-pagination"></div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</section>
+
+        
+ <section id="project" class="py-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+<div class="text-center">
+<div class="bg-stone-300 p-6 text-gray-900 rounded-2xl card-hover items-center justify-center">
+<p class="text-xl sm:text-sm font-bold mb-4">Project Duration</p>
+<div class="flex-1 mb-4 text-sm">
+<p>10 Years</p>
+<p>(FY: 2018-19 to 2028-29)</p>
+</div>
+</div>
+</div>
+<div class="text-center">
+<div class="bg-stone-300 p-6 text-gray-900 rounded-2xl card-hover items-center justify-center">
+<p class="text-xl sm:text-sm font-bold mb-4">Project Cost</p>
+<div class="flex-1 mb-4 text-sm">
+<p>Rs. 998 Crores</p>
+<p>(approx)</p>
+</div>
+</div>
+</div>
+<div class="text-center">
+<div class="bg-stone-300 p-6 text-gray-900 rounded-2xl card-hover items-center justify-center">
+<p class="text-xl sm:text-sm font-bold mb-4">JFMC / EDC</p>
+<div class="flex-1 mb-4 text-sm">
+<p>457 / 450</p>
+<p>(Formed / Target)</p>
+</div>
+</div>
+</div>
+<div class="text-center">
+<div class="bg-stone-300 p-6 text-gray-900 rounded-2xl card-hover items-center justify-center">
+<p class="text-xl sm:text-sm font-bold mb-4">Approved Microplans</p>
+<div class="flex-1 mb-4 text-sm">
+<p>457 / 450</p>
+<p>(Approved / Target)</p>
+</div>
+</div>
+</div>
+<div class="text-center">
+<div class="bg-stone-300 p-6 text-gray-900 rounded-2xl card-hover items-center justify-center">
+<p class="text-sm sm:text-sm font-bold mb-4">Self Help Group (SHG)</p>
+<div class="flex-1 mb-4 text-sm">
+<p>1350 /1350</p>
+<p>(Formed / Target)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+    </div>
+    <!-- Footer -->
+    <footer class="bg-stone-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-10">
+                <!-- Company Info -->
+                <div class="space-y-4">
+                    <h1>Tripura JICA</h1>
+                    <p class="text-stone-300 leading-relaxed">
+                        One of the largest projects in forestry sector in India,to enrich catchment forests in
+                        Tripura,funded under Japanese ODA for 10 yr period commencing from 2019.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://x.com/JicaTripura" target="_blank">
+                            <svg class="h-5 w-5 text-stone-400 hover:text-emerald-400 cursor-pointer transition-colors"
+                                fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.youtube.com/@scatformproject3954" target="_blank">
+                            <svg class="h-8 w-8 text-stone-400 hover:text-emerald-400 cursor-pointer transition-colors"
+                                fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/JicaTripura" target="_blank">
+                            <svg class="h-8 w-8 text-stone-400 hover:text-emerald-400 cursor-pointer transition-colors"
+                                fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-emerald-400">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li>
+                            <a href="/" class="text-stone-300 hover:text-white">Home</a>
+                        </li>
+                        <li>
+                            <a href="/introduction" class="text-stone-300 hover:text-white">About Us</a>
+                        </li>
+                        <li>
+                            <a href="/project-management-unit-pmu"
+                                class="text-stone-300 hover:text-white">Management</a>
+                        </li>
+                        <li>
+                            <a href="/governing-body-gb" class="text-stone-300 hover:text-white">Governing Body</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-emerald-400">Services</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li>
+                            <a href="/downloads" class="text-stone-300 hover:text-white">Downloads</a>
+                        </li>
+                        <li>
+                            <a href="/gallery" class="text-stone-300 hover:text-white">Gallery</a>
+                        </li>
+                        <li>
+                            <a href="/tenders" class="text-stone-300 hover:text-white">Tenders</a>
+                        </li>
+                        <li>
+                            <a href="/contact-us" class="text-stone-300 hover:text-white">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-emerald-400">Contact Info</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-start gap-3">
+                            <svg class="h-4 w-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span class="text-stone-300">
+                                Prakriti Bhavan<br />
+                                PROJECT MANAGEMENT UNIT(PMU)<br />
+                                Hatipara, Gandhigram<br />
+                                Agartala, Tripura[W]-799012<br />
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="h-4 w-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span class="text-stone-300">tripurajica@gmail.com</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="h-4 w-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span class="text-stone-300">
+                                0381-2397022 (Govt. Working Days)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Bar -->
+        <div class="mt-10 space-y-4">
+            <!-- Legal links -->
+            <div class="flex flex-wrap justify-center gap-4 border-t border-stone-700 pt-4 text-sm">
+                <a href="/disclaimer" class="text-stone-400 hover:text-white transition-colors">Disclaimer</a>
+                <a href="/privacy-policy" class="text-stone-400 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="/copyright" class="text-stone-400 hover:text-white transition-colors">Copyright</a>
+                <a href="/terms-conditions" class="text-stone-400 hover:text-white transition-colors">Terms &
+                    Conditions</a>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center border-t border-stone-700 pt-4 pb-4 text-sm text-stone-400">
+                <div class="flex">
+                    <div class="text-sm flex-[2]">
+                        ©
+                        <script nonce="">
+                            document.write(new Date().getFullYear());
+                        </script>
+                        Tripura JICA Project (SCATFORM), Government of Tripura. All Rights
+                        Reserved.
+                    </div>
+                    <div class="text-sm flex-[1]">
+                        Developed by NeoGeoInfo Technolgies Limited
+                    </div>
+                    <div class="text-sm flex-[1]">
+                        Designed in Consultation with Harshakumar C.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </footer>
+    <button id="backToTop"
+        class="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-3 shadow-lg hidden z-50 transition-all"
+        title="Back to Top">
+        ↑
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
+        integrity="sha384-2UI1PfnXFjVMQ7/ZDEF70CR943oH3v6uZrFQGGqJYlvhh4g6z6uVktxYbOlAczav"
+        crossorigin="anonymous"></script>
+    <script type="module" src="/static/app.js" nonce=""></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"
+        integrity="sha384-JYQd44jQWQbU+FdjWIUlbjzENGRHPdOQcj7dAgjJEvSyt2js5lE85kaPOdC53JVu" crossorigin="anonymous"
+        nonce="">
+        </script>
+    <script nonce="">
+        if (document.getElementById("north-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#north-table", {
+                paging: true,
+                searchable: false,
+                sortable: false
+            });
+        }
+
+        if (document.getElementById("unakoti-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#unakoti-table", {
+                paging: true,
+                searchable: false,
+                sortable: false
+            });
+        }
+
+        if (document.getElementById("khowai-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#khowai-table", {
+                paging: true,
+                searchable: false,
+                sortable: false
+            });
+        }
+
+        if (document.getElementById("west-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#west-table", {
+                paging: true,
+                searchable: false,
+                sortable: false
+            });
+        }
+
+        if (document.getElementById("sepahijala-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#sepahijala-table", {
+                paging: true,
+                searchable: false,
+                sortable: false
+            });
+        }
+
+        if (document.getElementById("gomati-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#gomati-table", {
+                paging: true,
+                searchable: false,
+                sortable: false
+            });
+        }
+
+        if (document.getElementById("south-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#south-table", {
+                paging: true,
+                searchable: false,
+                sortable: false
+            });
+        }
+
+        if (document.getElementById("gumti-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#gumti-table", {
+                paging: true,
+                searchable: false,
+                sortable: false
+            });
+        }
+
+        if (document.getElementById("datatable") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#datatable", {
+                paging: false,
+                searchable: false,
+                sortable: false
+            });
+        }
+
+        if (document.getElementById("datatable1") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#datatable1", {
+                paging: false,
+                searchable: false,
+                sortable: false
+            });
+        }
+
+    </script>
+    <script nonce="">
+        if (document.getElementById("workshop1") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#workshop1", {
+                paging: false,
+                searchable: false,
+                sortable: false
+            });
+        }
+        if (document.getElementById("workshop2") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#workshop2", {
+                paging: false,
+                searchable: false,
+                sortable: false
+            });
+        }
+        if (document.getElementById("workshop3") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#workshop3", {
+                paging: false,
+                searchable: false,
+                sortable: false
+            });
+        }
+        if (document.getElementById("workshop4") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#workshop4", {
+                paging: false,
+                searchable: false,
+                sortable: false
+            });
+        }
+        if (document.getElementById("workshop5") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#workshop5", {
+                paging: false,
+                searchable: false,
+                sortable: false
+            });
+        }
+        if (document.getElementById("workshop6") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#workshop6", {
+                paging: false,
+                searchable: false,
+                sortable: false
+            });
+        }
+    </script>
+    <script nonce="">
+        const galleryImages = document.querySelectorAll('#gallery img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        let currentIndex = 0;
+
+        galleryImages.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.dataset.full || img.src;
+                lightbox.classList.remove('hidden');
+                lightbox.classList.add('flex');
+                currentIndex = index;
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('flex');
+            lightbox.classList.add('hidden');
+        }
+
+        function showImage(index) {
+            const img = galleryImages[index];
+            if (img) {
+                lightboxImg.src = img.dataset.full || img.src;
+                currentIndex = index;
+            }
+        }
+
+        function nextImage() {
+            showImage((currentIndex + 1) % galleryImages.length);
+        }
+
+        function prevImage() {
+            showImage((currentIndex - 1 + galleryImages.length) % galleryImages.length);
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+    </script>
+    <script nonce="">
+        function formatDateTime(date = new Date()) {
+            const day = String(date.getDate()).padStart(2, '0');
+
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const month = monthNames[date.getMonth()];
+
+            const year = date.getFullYear();
+
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const seconds = String(date.getSeconds()).padStart(2, '0');
+
+            return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Call the function once
+            document.getElementById("currentTime").innerText = formatDateTime();
+
+            // Optional: Update every second like a live clock
+            setInterval(() => {
+                document.getElementById("currentTime").innerText = formatDateTime();
+            }, 1000);
+        });
+
+    </script>
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
+
+    <script nonce="">
+        document.addEventListener("DOMContentLoaded", function () {
+            function extractTwitterHandle(statusUrl) {
+                if (!statusUrl) return "JicaTripura";
+                const match = statusUrl.match(/https?:\/\/(?:www\.)?(?:x|twitter)\.com\/([^\/?#]+)(?:\/status\/\d+)?/i);
+                return match ? match[1] : "JicaTripura";
+            }
+
+            function ensureTwitterWidgetsLoaded(onReady) {
+                const runWhenReady = function () {
+                    if (window.twttr && window.twttr.widgets && typeof window.twttr.widgets.load === "function") {
+                        onReady();
+                    }
+                };
+
+                if (window.twttr && window.twttr.widgets && typeof window.twttr.widgets.load === "function") {
+                    onReady();
+                    return;
+                }
+
+                const existingScript = document.querySelector("script[src*='platform.twitter.com/widgets.js']");
+                if (existingScript) {
+                    existingScript.addEventListener("load", runWhenReady, { once: true });
+                } else {
+                    const script = document.createElement("script");
+                    script.src = "https://platform.twitter.com/widgets.js";
+                    script.async = true;
+                    script.charset = "utf-8";
+                    script.addEventListener("load", runWhenReady, { once: true });
+                    document.head.appendChild(script);
+                }
+
+                // Retry a few times in case the global twttr object initializes late.
+                window.setTimeout(runWhenReady, 500);
+                window.setTimeout(runWhenReady, 1500);
+                window.setTimeout(runWhenReady, 4000);
+            }
+
+            function refreshTwitterTimelineEmbed() {
+                const heading = Array.from(document.querySelectorAll("h1, h2, h3, h4, h5, h6"))
+                    .find((el) => /tripura\s+jica\s+on\s+twitter/i.test(el.textContent || ""));
+
+                if (!heading) return;
+
+                const twitterCard = heading.closest(".bg-white") || heading.parentElement;
+                if (!twitterCard) return;
+
+                if (twitterCard.querySelector(".twitter-timeline")) {
+                    ensureTwitterWidgetsLoaded(function () {
+                        window.twttr.widgets.load(twitterCard);
+                    });
+                    return;
+                }
+
+                const tweetAnchor = twitterCard.querySelector(
+                    "blockquote.twitter-tweet a[href*='/status/'], a[href*='/status/']"
+                );
+                const tweetWrapper = twitterCard.querySelector("blockquote.twitter-tweet");
+                const embedContainer = tweetWrapper ? tweetWrapper.parentElement : twitterCard.querySelector(".rounded-lg");
+
+                if (!embedContainer) return;
+
+                const handle = extractTwitterHandle(tweetAnchor ? tweetAnchor.href : "");
+                const timelineLink = document.createElement("a");
+                timelineLink.className = "twitter-timeline";
+                timelineLink.href = `https://twitter.com/${handle}?ref_src=twsrc%5Etfw`;
+                timelineLink.setAttribute("data-height", "560");
+                timelineLink.setAttribute("data-chrome", "nofooter transparent");
+                timelineLink.setAttribute("data-dnt", "true");
+                timelineLink.textContent = `Posts by @${handle}`;
+
+                embedContainer.innerHTML = "";
+                embedContainer.appendChild(timelineLink);
+
+                ensureTwitterWidgetsLoaded(function () {
+                    if (window.twttr && window.twttr.widgets && typeof window.twttr.widgets.load === "function") {
+                        window.twttr.widgets.load(embedContainer);
+                    }
+                });
+            }
+
+            refreshTwitterTimelineEmbed();
+            window.addEventListener("load", refreshTwitterTimelineEmbed, { once: true });
+
+            const calendarModal = document.getElementById("calendarModal");
+            const calendarBtn = document.getElementById("calendarBtn");
+            const closeCalendar = document.getElementById("closeCalendar");
+
+            function showCalendarModal() {
+                calendarModal.classList.remove("hidden");
+                calendarModal.classList.add("flex");
+                document.documentElement.style.overflow = "hidden";
+
+                // Render FullCalendar once modal is visible
+                if (!window.calendarInstance) {
+                    var calendarEl = document.getElementById("calendar");
+                    window.calendarInstance = new FullCalendar.Calendar(calendarEl, {
+                        initialView: 'dayGridMonth',
+                        events: "/holidays/",
+                        eventDataTransform: function (eventData) {
+                            return {
+                                id: eventData.id,
+                                title: eventData.name,
+                                start: eventData.date,
+                                description: eventData.description,
+                                backgroundColor: "#e60000",
+                                borderColor: "#e60000",
+                                textColor: "white",
+                            };
+                        },
+                        eventClick: function (info) {
+                            alert(info.event.title + " (" + info.event.startStr + ")");
+                        }
+                    });
+                    window.calendarInstance.render();
+                }
+            }
+
+            function hideCalendarModal() {
+                calendarModal.classList.add("hidden");
+                calendarModal.classList.remove("flex");
+                document.documentElement.style.overflow = "";
+            }
+
+            // Open on button click
+            calendarBtn.addEventListener("click", showCalendarModal);
+
+            // Close on X
+            closeCalendar.addEventListener("click", hideCalendarModal);
+
+            // Close on outside click
+            calendarModal.addEventListener("click", function (e) {
+                if (e.target === calendarModal) hideCalendarModal();
+            });
+
+            // Close on Escape key
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape" && !calendarModal.classList.contains("hidden")) {
+                    hideCalendarModal();
+                }
+            });
+        });
+    </script>
+    
+
+</body>
+
+</html>
+

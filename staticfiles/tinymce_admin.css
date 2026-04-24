@@ -1,0 +1,12 @@
+/* Override djangocms-admin-style constraints to allow full-width TinyMCE editor */
+form .form-row .form-multiline>div:not(.related-widget-wrapper, .form-multiline > div:not([class]) > div:not(.related-widget-wrapper), .cke, .widget),
+form .form-row>.fieldBox,
+form .form-row>div:not([class])>.fieldBox,
+form .form-row>div:not([class])>.flex-container>div:not(.related-widget-wrapper, .cke, .widget) {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+.tox-tinymce {
+    width: 100% !important;
+}
